@@ -58,6 +58,7 @@ x-airflow-common:
     - ./data:/opt/airflow/data # ADD: mount local data folder to airflow
     - ./dbt_project:/opt/airflow/dbt_project # ADD: mount dbt folder to Airflow
     - ./secrets/google-ads-sa.json:/opt/airflow/gcp/credentials/google-ads-sa.json:ro # ADD: Accessing the key in Docker
+    - ./profiles.yml:/home/airflow/.dbt/profiles.yml
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
     redis:

@@ -5,6 +5,7 @@ secrets/
 *.json              
 .env
 .env.*
+profiles.yml
 
 #############################
 # 2. Airflow Files

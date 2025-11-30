@@ -64,3 +64,10 @@ with DAG(
         autodetect=True,
     )
 
+    # Task 3: Run dbt transformation models
+    run_dbt_models = BashOperator(
+        task_id='run_dbt_models',
+        bash_command='cd /opt/airflow/dbt_project/google_ads_dbt_project && dbt run --models stg_ads_sales',
+    )
+
+upload_data_to_gcs >> load_gcs_to_bigquery >> run_dbt_models
