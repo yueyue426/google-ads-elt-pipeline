@@ -5,4 +5,4 @@ sources:
     schema: raw
     database: silicon-carver-479300-r5
     tables:
-      - name: ads-raw
+      - name: ads_raw

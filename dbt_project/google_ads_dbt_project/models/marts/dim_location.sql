@@ -5,4 +5,4 @@ SELECT
     location
 
 FROM {{ ref('stg_ads') }}
-GROUP BY location;
+GROUP BY location

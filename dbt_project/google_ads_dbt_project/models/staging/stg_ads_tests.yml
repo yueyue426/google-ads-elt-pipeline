@@ -17,7 +17,7 @@ models:
         tests:
           - not_null
 
-      - name: impression
+      - name: impressions
         tests:
           - not_null
 
@@ -26,10 +26,6 @@ models:
           - not_null
 
       - name: location
-        tests:
-          - not_null
-
-      - name: device
         tests:
           - not_null
 

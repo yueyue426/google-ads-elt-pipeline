@@ -30,4 +30,4 @@ SELECT
     SAFE_DIVIDE(conversions, clicks) AS coverstion_rate,
     SAFE_DIVIDE(sale_amount - cost, cost) AS ROI,
     sale_amount - cost AS profit
-FROM base;
+FROM base

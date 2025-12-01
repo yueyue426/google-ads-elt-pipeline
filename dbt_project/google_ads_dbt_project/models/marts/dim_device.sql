@@ -5,4 +5,4 @@ SELECT
     device
 
 FROM {{ ref('stg_ads') }}
-GROUP BY device;
+GROUP BY device

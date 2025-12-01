@@ -24,11 +24,15 @@ SELECT
     ) AS coversion_rate,
 
     -- Currency cleaning
-    CAST(REPLACE(Cost, '$', '') AS NUMERIC) AS cost,
-    CAST(REPLACE(Sale_Amount, '$', '') AS NUMERIC) AS sale_amount,
+    CAST(REPLACE(CAST(Cost AS STRING), '$', '') AS NUMERIC) AS cost,
+    CAST(REPLACE(CAST(Sale_Amount AS STRING), '$', '') AS NUMERIC) AS sale_amount,
 
-    -- Date cleaning
-    PARSE_DATE('%Y-%m-%d', Ad_Date) AS ad_date,
+    -- Date cleaning with multiple formats
+    COALESCE(
+        SAFE.PARSE_DATE('%Y-%m-%d', Ad_Date),
+        SAFE.PARSE_DATE('%Y/%m/%d', Ad_Date),
+        SAFE.PARSE_DATE('%d-%m-%Y', Ad_Date)
+    ) AS ad_date,    
 
     -- Clean column Location
     CASE
@@ -58,6 +62,6 @@ SELECT
         ELSE LOWER(Keyword)
     END AS keyword
 
-FROM {{ source('raw_staging', 'ads-raw') }};
+FROM {{ source('raw_staging', 'ads_raw') }}
 
 

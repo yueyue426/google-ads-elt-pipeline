@@ -2,15 +2,16 @@ from datetime import datetime, timedelta
 from google.cloud import storage
 from airflow.models import DAG
 from airflow.operators.python import PythonOperator
-from airflow.operators.bash_operator import BashOperator
-from airflow.providers.google.cloud.operators.gcs_to_bigquery import GCSToBigQueryOperator
+from airflow.operators.bash import BashOperator
+from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
 
 # Constants configuration
+GCP_PROJECT_ID = 'silicon-carver-479300-r5'
 GCS_BUCKET = 'ads-raw-bucket'
 GCS_BLOB_PATH = 'raw/ads_sales.csv'
 LOCAL_CSV_PATH = './data/raw/GoogleAds_DataAnalytics_Sales_Uncleaned.csv'
 BQ_DATASET = 'raw'
-BQ_TABLE = 'ads-raw'
+BQ_TABLE = 'ads_raw'
 
 # Upload local file to GCS
 def upload_to_gcs(bucket_name, gcs_blob_path, local_file):
@@ -58,11 +59,12 @@ with DAG(
         task_id='gcs_to_bigquery',
         bucket=GCS_BUCKET,
         source_objects=[GCS_BLOB_PATH],
-        destination_project_dataset_table=f"{BQ_DATASET}.{BQ_TABLE}",
+        destination_project_dataset_table=f"{GCP_PROJECT_ID}.{BQ_DATASET}.{BQ_TABLE}",
         source_format='CSV',
         skip_leading_rows=1,
-        write_diposition='WRITE_TRUNCATE',
+        write_disposition='WRITE_TRUNCATE',
         autodetect=True,
+        gcp_conn_id='google_cloud_default',
     )
 
     # Task 3: Run dbt transformation models
@@ -75,7 +77,7 @@ with DAG(
     # Task 4: Run dbt tests
     run_dbt_tests = BashOperator(
         task_id='run_dbt_tests',
-        bash_command='cd /opt/airflow/dbt_prject/google_ads_dbt_project && dbt test',
+        bash_command='cd /opt/airflow/dbt_project/google_ads_dbt_project && dbt test',
     )
 
 upload_data_to_gcs >> load_gcs_to_bigquery >> run_dbt_models >> run_dbt_tests

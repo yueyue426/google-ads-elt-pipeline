@@ -32,5 +32,5 @@ FROM base b
 LEFT JOIN {{ ref('dim_campaigns') }} dc ON b.campaign_name = dc.campaign_name
 LEFT JOIN {{ ref('dim_date') }} dd ON b.ad_date = dd.date_id
 LEFT JOIN {{ ref('dim_device') }} dde ON b.device = dde.device
-LEFT JOIN {{ ref('dim_location') }} dl ON b.location = dl.location;
+LEFT JOIN {{ ref('dim_location') }} dl ON b.location = dl.location
     

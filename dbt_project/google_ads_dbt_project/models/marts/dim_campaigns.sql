@@ -6,4 +6,4 @@ SELECT
     campaign_name
 
 FROM {{ ref('stg_ads') }}
-GROUP BY campaign_name; -- Ensure uniqueness
+GROUP BY campaign_name -- Ensure uniqueness
