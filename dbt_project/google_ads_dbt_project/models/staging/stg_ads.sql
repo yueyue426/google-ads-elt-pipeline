@@ -12,12 +12,16 @@ SELECT
         ELSE Campaign_Name
     END AS campaign_name,
 
-    -- Clean numeric columns
+    -- Clean numeric columns for missing values
     COALESCE(Clicks, 0) AS clicks,
     COALESCE(Impressions, 0) AS impressions,
     COALESCE(Leads, 0) AS leads,
     COALESCE(Conversions, 0) AS conversions,
-    COALESCE(`Conversion Rate`, 0) AS coversion_rate,
+    COALESCE(
+        `Conversion Rate`, 
+        SAFE_DIVIDE(Conversions, NULLIF(Clicks, 0)),
+        0
+    ) AS coversion_rate,
 
     -- Currency cleaning
     CAST(REPLACE(Cost, '$', '') AS NUMERIC) AS cost,
