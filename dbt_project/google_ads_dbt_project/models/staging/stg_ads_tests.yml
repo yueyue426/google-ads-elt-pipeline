@@ -1,0 +1,42 @@
+version 2:
+
+models:
+  - name: stg_ads
+    columns:
+      - name: ad_id
+        description: "Unique ID for each ad."
+        tests:
+          - not_null
+          - unique
+      
+      - name: campaign_name
+        tests:
+          - not_null
+
+      - name: clicks
+        tests:
+          - not_null
+
+      - name: impression
+        tests:
+          - not_null
+
+      - name: conversions
+        tests:
+          - not_null
+
+      - name: location
+        tests:
+          - not_null
+
+      - name: device
+        tests:
+          - not_null
+
+      - name: device
+        tests:
+          - not_null
+
+      - name: keyword
+        tests:
+          - not_null
