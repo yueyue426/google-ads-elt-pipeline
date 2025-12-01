@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw_staging
+    schema: raw
+    database: silicon-carver-479300-r5
+    tables:
+      - name: ads-raw

@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from google.cloud import storage
 from airflow.models import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.bash_operator import BashOperator
 from airflow.providers.google.cloud.operators.gcs_to_bigquery import GCSToBigQueryOperator
 
 # Constants configuration
@@ -9,7 +10,7 @@ GCS_BUCKET = 'ads-raw-bucket'
 GCS_BLOB_PATH = 'raw/ads_sales.csv'
 LOCAL_CSV_PATH = './data/raw/GoogleAds_DataAnalytics_Sales_Uncleaned.csv'
 BQ_DATASET = 'raw'
-BQ_TABLE = 'ads-raw-bucket'
+BQ_TABLE = 'ads-raw'
 
 # Upload local file to GCS
 def upload_to_gcs(bucket_name, gcs_blob_path, local_file):
@@ -67,7 +68,14 @@ with DAG(
     # Task 3: Run dbt transformation models
     run_dbt_models = BashOperator(
         task_id='run_dbt_models',
-        bash_command='cd /opt/airflow/dbt_project/google_ads_dbt_project && dbt run --models stg_ads_sales',
+        bash_command='cd /opt/airflow/dbt_project/google_ads_dbt_project && dbt run --models +stg_ads',
+        # Run staging models and all downstream models that depend on it
     )
 
-upload_data_to_gcs >> load_gcs_to_bigquery >> run_dbt_models
+    # Task 4: Run dbt tests
+    run_dbt_tests = BashOperator(
+        task_id='run_dbt_tests',
+        bash_command='cd /opt/airflow/dbt_prject/google_ads_dbt_project && dbt test',
+    )
+
+upload_data_to_gcs >> load_gcs_to_bigquery >> run_dbt_models >> run_dbt_tests
