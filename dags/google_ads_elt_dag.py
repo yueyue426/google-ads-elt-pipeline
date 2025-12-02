@@ -13,7 +13,7 @@ LOCAL_CSV_PATH = './data/raw/GoogleAds_DataAnalytics_Sales_Uncleaned.csv'
 BQ_DATASET = 'raw'
 BQ_TABLE = 'ads_raw'
 
-# Upload local file to GCS
+# Function definition: Upload local file to GCS
 def upload_to_gcs(bucket_name, gcs_blob_path, local_file):
     client = storage.Client()
     bucket = client.bucket(bucket_name)
