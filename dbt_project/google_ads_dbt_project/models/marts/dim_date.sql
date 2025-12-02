@@ -1,4 +1,4 @@
-{{ config(materialized = 'table') }}
+{{ config(materialized='table') }}
 
 SELECT DISTINCT
     ad_date AS date_id,

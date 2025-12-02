@@ -1,4 +1,4 @@
-{{ config(materialized = 'table') }}
+{{ config(materialized='table') }}
 
 WITH base AS (
     SELECT
