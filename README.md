@@ -1,4 +1,4 @@
-# Google Ads ELT Pipeline
+# Google Ads ELT Pipeline ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 The goal of this project is to practice building an end-to-end ELT data pipeline using modern data engineering tools such as Airflow, dbt, Docker, and Google Cloud. The pipeline processes unstructured advertising logs and transforms them into a high-performance Star Schema within BigQuery, enabling efficient analytics and BI reporting in Looker Studio.
 This project focuses on ensuring data quality, consistency, and delivering a low-latency analytics layer suitable for real-world reporting use cases.
@@ -41,7 +41,9 @@ The dataset used in this project is downloaded from Kaggle: [Google Ads sales da
 - **Keyword** - Search keyword that triggered the ad (contains typos and variations).
 
 ## Pipeline Diagram
-![elt-pipeline](/images/ELT_Pipeline_Diagram.png)
+<p align="center">
+    <img src="images/ELT_Pipeline_Diagram.png" />
+</p>
 
 ## Project Reproduction (Try it Yourself)
 1. Clone the repository:
@@ -126,7 +128,7 @@ docker compose exec airflow-webserver airflow db init
 ```
 .
 ├── dags/
-│   └── google_ads_elt_dag.py          # Airflow DAG for ELT pipeline
+│   └── google_ads_elt_dag.py           # Airflow DAG for ELT pipeline
 │
 ├── logs/                               # Airflow logs (auto-generated)
 │   └── ... 
@@ -146,17 +148,20 @@ docker compose exec airflow-webserver airflow db init
 ├── secrets/
 │   └── google_service_account_key.json # Service account credentials
 │
-├── .env                                 # Environment variables for Docker/Airflow
-├── docker-compose.yaml                  # Docker services (Airflow, dbt, etc.)
-├── Dockerfile                           # Container image for Airflow + dbt
-├── profiles.yml                         # dbt profile for BigQuery connection
-├── requirements.txt                     # Python dependencies
-└── README.md                            # Project documentation
+├── .env                                # Environment variables for Docker/Airflow
+├── docker-compose.yaml                 # Docker services (Airflow, dbt, etc.)
+├── Dockerfile                          # Container image for Airflow + dbt
+├── profiles.yml                        # dbt profile for BigQuery connection
+├── requirements.txt                    # Python dependencies
+└── README.md                           # Project documentation
 ```
 
 ## Visualization
 You can access the report [here](https://lookerstudio.google.com/reporting/c85c2327-9323-44e3-a31c-ff61b626e581).
-![performance](/images/Google_Ads_Performance_Overview.png)
+
+<p align="center">
+    <img src="images/Google_Ads_Performance_Overview.png" />
+</p>
 
 ## Future Improvements
 
