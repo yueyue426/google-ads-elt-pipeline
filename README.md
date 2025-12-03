@@ -1,11 +1,9 @@
 # Google Ads ELT Pipeline
 
-## Project Goal
 The goal of this project is to practice building an end-to-end ELT data pipeline using modern data engineering tools such as Airflow, dbt, Docker, and Google Cloud. The pipeline processes unstructured advertising logs and transforms them into a high-performance Star Schema within BigQuery, enabling efficient analytics and BI reporting in Looker Studio.
 This project focuses on ensuring data quality, consistency, and delivering a low-latency analytics layer suitable for real-world reporting use cases.
 
 ## Tabel of Contents
-- [Project Goal](#project-goal)
 - [Technologies & Tools](#technologies--tools)
 - [Dataset](#dataset)
 - [Pipeline Diagram](#pipeline-diagram)
@@ -16,34 +14,31 @@ This project focuses on ensuring data quality, consistency, and delivering a low
 
 ## Technologies & Tools
 #### Google Cloud Platform
-- Google Cloud Storage (GCS) - Data Lake as staging area
-- BigQuery - Data Warehouse to store structred and transformed data
-- Looker Studio - For visualization
+- **Google Cloud Storage** (GCS) - Data Lake as staging area
+- **BigQuery** - Data Warehouse to store structred and transformed data
+- **Looker Studio** - For visualization
 #### Orchestration & Transformation
-- Apache Airflow - Pipeline orchestration
-- dbt Core - For data transformation and data models creation
+- **Apache Airflow** - Pipeline orchestration
+- **dbt Core** - For data transformation and data models creation
 #### Enviroment & Language
-- Docker & Docker Compose - For local development
-- Python - Programming Language for extract & load scripts
+- **Docker & Docker Compose** - For local development
+- **Python** - Programming Language for extract & load scripts
 
 ## Dataset
 The dataset used in this project is downloaded from Kaggle: [Google Ads sales dataset](https://www.kaggle.com/datasets/nayakganesh007/google-ads-sales-dataset). It closely resembles real-world exported advertising data that digital marketers and analysts typically work with — including typos, inconsistent formatting, missing values, mixed casing, and other data quality issues. The dataset contains 1,600 rows and 13 columns, described below:
-- Ad_ID — Unique identifier for each ad campaign.
-- Campaign_Name — Name of the campaign (includes typos and naming variations).
-- Clicks — Number of user clicks on the ad.
-- Impression — Number of times the ad was shown on a screen.
-- Cost — Total ad spend (stored as a string with $ symbols and missing values).
-- Typically calculated using CPC (Cost Per Click): Cost = Clicks × CPC.
-- Leads — Number of leads generated.
-- A lead is a user who shows meaningful interest (e.g., signing up or requesting info).
-- Conversions — Number of actual conversions (sales, signups, etc.).
-- A conversion is the final desired action (purchase, registration, booking, install, call).
-- Conversion_Rate — Calculated as Conversions / Clicks.
-- Sales_Amount — Revenue generated from conversions.
-- Ad_Date — Date of the ad activity (presented in inconsistent date formats).
-- Location — City where the ad was served (with spelling or case inconsistencies).
-- Device — Device type (Mobile, Desktop, Tablet, with mixed casing).
-- Keyword — Search keyword that triggered the ad (contains typos and variations).
+- **Ad_ID** - Unique identifier for each ad campaign.
+- **Campaign_Name** - Name of the campaign (includes typos and naming variations).
+- **Clicks** - Number of user clicks on the ad.
+- **Impression** - Number of times the ad was shown on a screen.
+- **Cost** - Total ad spend (stored as a string with $ symbols and missing values).
+- **Leads** - Number of leads generated.
+- **Conversions** - Number of actual conversions (sales, signups, etc.).
+- **Conversion_Rate** - Calculated as Conversions / Clicks.
+- **Sales_Amount** - Revenue generated from conversions.
+- **Ad_Date** - Date of the ad activity (presented in inconsistent date formats).
+- **Location - City where the ad was served (with spelling or case inconsistencies).
+- **Device** - Device type (Mobile, Desktop, Tablet, with mixed casing).
+- **Keyword** - Search keyword that triggered the ad (contains typos and variations).
 
 ## Pipeline Diagram
 ![elt-pipeline](/images/ELT_Pipeline_Diagram.png)
