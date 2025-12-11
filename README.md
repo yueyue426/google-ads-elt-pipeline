@@ -36,7 +36,7 @@ The dataset used in this project is downloaded from Kaggle: [Google Ads sales da
 - **Conversion_Rate** - Calculated as Conversions / Clicks.
 - **Sales_Amount** - Revenue generated from conversions.
 - **Ad_Date** - Date of the ad activity (presented in inconsistent date formats).
-- **Location - City where the ad was served (with spelling or case inconsistencies).
+- **Location** - City where the ad was served (with spelling or case inconsistencies).
 - **Device** - Device type (Mobile, Desktop, Tablet, with mixed casing).
 - **Keyword** - Search keyword that triggered the ad (contains typos and variations).
 
@@ -47,10 +47,10 @@ The dataset used in this project is downloaded from Kaggle: [Google Ads sales da
 
 ## Project Reproduction (Try it Yourself)
 1. Clone the repository:
-```bash
-git clone https://github.com/yueyue426/google-ads-elt-pipeline.git
-cd google-ads-elt-pipeline
-```
+    ```bash
+    git clone https://github.com/yueyue426/google-ads-elt-pipeline.git
+    cd google-ads-elt-pipeline
+    ```
 2. Set Up GCP:
    - Create a GCP account (if you don't already have one).
    - Create a GCP Project.
@@ -101,13 +101,13 @@ cd google-ads-elt-pipeline
      BQ_TABLE = 'ads_raw'
      ```
 5. Build & Start Docker containers (Docker Compose)
-```bash
-docker compose up -d --build
-```
+    ```bash
+    docker compose up -d --build
+    ```
 6. Initailize Airflow:
-```bash
-docker compose exec airflow-webserver airflow db init
-```
+    ```bash
+    docker compose exec airflow-webserver airflow db init
+    ```
 7. Access Airflow UI at: http://localhost:8080
    - Create the `google_cloud_default` Connection:
      - In the Airlfow UI, Go to **Admin** -> **Connections**.
@@ -129,25 +129,16 @@ docker compose exec airflow-webserver airflow db init
 .
 ├── dags/
 │   └── google_ads_elt_dag.py           # Airflow DAG for ELT pipeline
-│
 ├── logs/                               # Airflow logs (auto-generated)
-│   └── ... 
-│
 ├── plugins/                            # Custom Airflow plugins (optional)
-│   └── ...
-│
 ├── dbt/
 │   └── google_ads_dbt_project/         # dbt transformation project
 │       ├── models/                     # dbt models (staging + marts)
 │       └── ...
-│
-├── data/
-│   └── raw/
-│       └── ads_raw.csv                 # Raw Google Ads data (CSV)
-│
+├── data/raw/
+│   └── ads_raw.csv                     # Raw Google Ads data (CSV)
 ├── secrets/
 │   └── google_service_account_key.json # Service account credentials
-│
 ├── .env                                # Environment variables for Docker/Airflow
 ├── docker-compose.yaml                 # Docker services (Airflow, dbt, etc.)
 ├── Dockerfile                          # Container image for Airflow + dbt
