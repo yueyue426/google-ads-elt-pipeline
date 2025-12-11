@@ -114,7 +114,7 @@ The dataset used in this project is downloaded from Kaggle: [Google Ads sales da
      - Click the blue **`+`** button to create a new connection.
      - Enter the Configuration:
        - **Conn Id**: `google_cloud_default`
-       - **ConnType**: `Google Cloud`
+       - **Conn Type**: `Google Cloud`
        - **Keyfile Path**: `/opt/airflow/gcp/credentials/[YOUR_KEY_JSON_FILE].json`
        - **Project Id**: Your GCP project ID
      - Click **Save**.
