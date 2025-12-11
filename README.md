@@ -155,6 +155,12 @@ You can access the report [here](https://lookerstudio.google.com/reporting/c85c2
 </p>
 
 ## Future Improvements
+- Add CI/CD for Airflow and dbt
+- Add dbt Tests & Documentation
+- Add more data sources
+- Add incremental models
+  - Enable dbt incremental models to optimization performance
+  - Auto-load only new daily files from GCS
 
 
 
